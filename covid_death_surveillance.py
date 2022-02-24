@@ -22,7 +22,7 @@ def get_sftp(sftp_icdx_folder_path, sftp_icpreg_folder_path):
         try:
             cnopts = pysftp.CnOpts()
             cnopts.hostkeys = None
-            with pysftp.Connection(host='192.168.171.160', username='cdc_liuyl', password='rQza1fq3895c', cnopts=cnopts, port=22) as sftp:
+            with pysftp.Connection(host='IP', username='username', password='pwd', cnopts=cnopts, port='port') as sftp:
                 sftp.cwd(sftp_raw_data_path)
                 for filename in sftp.listdir():
                     if 'ICDX_' in filename:
@@ -279,29 +279,29 @@ def data_divide_func(sftp_filename_list, division_name):
 
 def main():
     # # # Terminate pandas loc. Warning
-    # pd.options.mode.chained_assignment = None
-    #
-    # # # Access sftp and download file ------------------------------------------------------------------------------
-    # sftp_icdx_folder_path = os.path.join(os.path.abspath('.'), 'sftp_download_folder', 'ICDX_sftp')
-    # sftp_icpreg_folder_path = os.path.join(os.path.abspath('.'), 'sftp_download_folder', 'ICPREG_sftp')
-    # sftp_filename_list = get_sftp(sftp_icdx_folder_path, sftp_icpreg_folder_path)
-    #
-    # sftp_icdx_filename_list = sftp_filename_list[0]
-    # sftp_icpreg_filename_list = sftp_filename_list[1]
+    pd.options.mode.chained_assignment = None
+    
+    # # Access sftp and download file ------------------------------------------------------------------------------
+    sftp_icdx_folder_path = os.path.join(os.path.abspath('.'), 'sftp_download_folder', 'ICDX_sftp')
+    sftp_icpreg_folder_path = os.path.join(os.path.abspath('.'), 'sftp_download_folder', 'ICPREG_sftp')
+    sftp_filename_list = get_sftp(sftp_icdx_folder_path, sftp_icpreg_folder_path)
+    
+    sftp_icdx_filename_list = sftp_filename_list[0]
+    sftp_icpreg_filename_list = sftp_filename_list[1]
 
-    test_icdx_filename_list = ['ICDX_20210501.txt', 'ICDX_20210502.txt', 'ICDX_20210503.txt',
-                               'ICDX_20210504.txt', 'ICDX_20210505.txt', 'ICDX_20210506.txt', 'ICDX_20210507.txt', 'ICDX_20210508.txt', 'ICDX_20210509.txt',
-                               'ICDX_20210510.txt', 'ICDX_20210511.txt', 'ICDX_20210512.txt', 'ICDX_20210513.txt', 'ICDX_20210514.txt', 'ICDX_20210515.txt',
-                               'ICDX_20210516.txt', 'ICDX_20210517.txt', 'ICDX_20210518.txt', 'ICDX_20210519.txt'
-                               ]
-    test_icpreg_filename_list = ['ICPREG_20210501.txt', 'ICPREG_20210502.txt', 'ICPREG_20210503.txt', 'ICPREG_20210504.txt',
-                                 'ICPREG_20210505.txt', 'ICPREG_20210506.txt', 'ICPREG_20210507.txt', 'ICPREG_20210508.txt', 'ICPREG_20210509.txt',
-                                 'ICPREG_20210510.txt', 'ICPREG_20210511.txt', 'ICPREG_20210512.txt', 'ICPREG_20210513.txt', 'ICPREG_20210514.txt',
-                                 'ICPREG_20210515.txt', 'ICPREG_20210516.txt', 'ICPREG_20210517.txt', 'ICPREG_20210518.txt', 'ICPREG_20210519.txt'
-                                 ]
+#     test_icdx_filename_list = ['ICDX_20210501.txt', 'ICDX_20210502.txt', 'ICDX_20210503.txt',
+#                                'ICDX_20210504.txt', 'ICDX_20210505.txt', 'ICDX_20210506.txt', 'ICDX_20210507.txt', 'ICDX_20210508.txt', 'ICDX_20210509.txt',
+#                                'ICDX_20210510.txt', 'ICDX_20210511.txt', 'ICDX_20210512.txt', 'ICDX_20210513.txt', 'ICDX_20210514.txt', 'ICDX_20210515.txt',
+#                                'ICDX_20210516.txt', 'ICDX_20210517.txt', 'ICDX_20210518.txt', 'ICDX_20210519.txt'
+#                                ]
+#     test_icpreg_filename_list = ['ICPREG_20210501.txt', 'ICPREG_20210502.txt', 'ICPREG_20210503.txt', 'ICPREG_20210504.txt',
+#                                  'ICPREG_20210505.txt', 'ICPREG_20210506.txt', 'ICPREG_20210507.txt', 'ICPREG_20210508.txt', 'ICPREG_20210509.txt',
+#                                  'ICPREG_20210510.txt', 'ICPREG_20210511.txt', 'ICPREG_20210512.txt', 'ICPREG_20210513.txt', 'ICPREG_20210514.txt',
+#                                  'ICPREG_20210515.txt', 'ICPREG_20210516.txt', 'ICPREG_20210517.txt', 'ICPREG_20210518.txt', 'ICPREG_20210519.txt'
+#                                  ]
 
-    data_divide_func(test_icdx_filename_list, 'ICDX')
-    data_divide_func(test_icpreg_filename_list, 'ICPREG')
+    data_divide_func(sftp_icdx_filename_list, 'ICDX')
+    data_divide_func(sftp_icpreg_filename_list, 'ICPREG')
 
 
 if __name__ == "__main__":
