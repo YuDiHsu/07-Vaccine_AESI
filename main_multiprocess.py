@@ -23,7 +23,7 @@ def get_sftp(sftp_icdx_folder_path, sftp_icpreg_folder_path):
         try:
             cnopts = pysftp.CnOpts()
             cnopts.hostkeys = None
-            with pysftp.Connection(host='192.168.171.160', username='cdc_liuyl', password='rQza1fq3895c', cnopts=cnopts, port=22) as sftp:
+            with pysftp.Connection(host='IP', username='username', password='pwd', cnopts=cnopts, port='port') as sftp:
                 sftp.cwd(sftp_raw_data_path)
                 for filename in sftp.listdir():
                     if 'ICDX_' in filename:
@@ -352,7 +352,7 @@ def main():
 if __name__ == "__main__":
     mp.freeze_support()
     pd.options.mode.chained_assignment = None
-    # Error case ID: T102399801, wrong date is 19470229
+    # Error case ID: T102399XXX, wrong date is 19470229
     print("=" * 50 + ' Start to run main_multiprocess.py ' + '=' * 50)
     main()
     print("=" * 50)
