@@ -62,16 +62,10 @@ def visit_type_select(val_dict: dict, syndrome: str):
                                 except Exception as e:
                                     print(e)
                                     print('-'*100)
-                                    # print(val_dict_return)
-                                    # print(v)
-                                    # print(visit_period)
-                                    # print(v[i-1])
-                                    # print(v[i])
-                                    # print('-'*100)
                             else:
                                 break
                 else:
-                    print('----')
+                    print('-'*100)
                     val_dict_return.pop(k)
 
     return val_dict_return
@@ -89,7 +83,6 @@ def processing_func(idno_list):
     df_select = get_processing_rg_func(os.path.join('.', 'daily_pickle_store_folder', 'ICDX_pickle'))[1]
     df_select = df_select.reset_index(drop=True)
     df_select = df_select[df_select['clean_period_days'] != '']
-    # df_select = df_select.loc[0:100]
 
     df_ = pd.DataFrame()
     for idno in idno_list:
@@ -100,15 +93,9 @@ def processing_func(idno_list):
             exam_date_list = sorted(set(df_temp.loc[(df_temp['syndrome'] == syndrome)].loc[:, '就醫日期'].values.tolist()))
             clean_period_days = next(iter(set(df_temp.loc[(df_temp['syndrome'] == syndrome)].loc[:, 'clean_period_days'].values.tolist())))
             vaccine_injection_day = ''
-            # test_exam_date_list = [datetime.date(2020, 4, 18), datetime.date(2020, 4, 18), datetime.date(2021, 6, 11),
-            #                        datetime.date(2021, 8, 6), datetime.date(2021, 9, 30), datetime.date(2022, 11, 26),
-            #                        datetime.date(2022, 2, 28)]
-            #
-            # test_clean_days = 30
-            # test_vaccine_injection_day = datetime.date(2020, 7, 14)
-
             val_dict = {f"{exam_date_list[0]}": [exam_date_list[0]]}
             val_date = exam_date_list[0]
+            
             for exam_date in exam_date_list:
                 if abs((exam_date - val_date).days) >= clean_period_days:
                     val_date = exam_date
@@ -141,18 +128,17 @@ def processing_func(idno_list):
 
     df_ = df_.reset_index(drop=True)
 
-    # with open(os.path.join('.', 'df_clean_period.pickle'), 'wb') as pl:
-    #     pickle.dump(df_, pl)
+    with open(os.path.join('.', 'df_clean_period.pickle'), 'wb') as pl:
+        pickle.dump(df_, pl)
     return df_
 
 
 def get_processing_rg_func(dir_path):  # loading data and get unique id
-    # df = pd.DataFrame()
-    # for file in os.listdir(dir_path):
-    #     _df = pd.read_pickle(os.path.join(dir_path, file))
-    #     df = df.append(_df)
-    # df = df.reset_index(drop=True)
-    df = pd.read_pickle(os.path.join('.', 'daily_pickle_store_folder', 'ICDX_pickle', 'df_final_ICDX_20210609.pickle'))[0:50000]
+    df = pd.DataFrame()
+    for file in os.listdir(dir_path):
+        _df = pd.read_pickle(os.path.join(dir_path, file))
+        df = df.append(_df)
+    df = df.reset_index(drop=True)
 
     df_select = pd.DataFrame()
     # # Terminate pandas loc. Warning
@@ -192,47 +178,7 @@ def main():
 
     with open(os.path.join('.', f"event_selection_{datetime.datetime.today().date().strftime('%Y%m%d')}.pickle"), 'wb') as pl:
         pickle.dump(df_f, pl)
-
-    # df = pd.read_pickle(os.path.join('.', 'event_selection_20210505.pickle'))
-    # df = df.drop_duplicates(subset=['身分證號', '就醫日期', 'syndrome'])
-    # print(df)
-    # df_s = df.copy().groupby(['syndrome', 'age_group'])['syndrome'].count()
-    # df_s.to_csv(os.path.join('.', 'count.csv'))
-    # a = df.loc[(df['syndrome'] == 'Guillain-Barré syndrome and Miller Fisher syndrome') & (df['age_group'] == '0-17')].loc[(df['就醫類別'] == '05') | (df['就醫類別'] == 'BB')]
-    # b = df.loc[(df['syndrome'] == 'Guillain-Barré syndrome and Miller Fisher syndrome') & (df['age_group'] == '18-49')].loc[(df['就醫類別'] == '05') | (df['就醫類別'] == 'BB')]
-    # c = df.loc[(df['syndrome'] == 'Guillain-Barré syndrome and Miller Fisher syndrome') & (df['age_group'] == '50-64')].loc[(df['就醫類別'] == '05') | (df['就醫類別'] == 'BB')]
-    # d = df.loc[(df['syndrome'] == 'Guillain-Barré syndrome and Miller Fisher syndrome') & (df['age_group'] == '65+')].loc[(df['就醫類別'] == '05') | (df['就醫類別'] == 'BB')]
-    # # print(df.loc[:, ('身分證號', '就醫日期', '就醫類別')].loc[(df['syndrome'] == 'Transverse myelitis') & (df['age_group'] == '0-17')])
-    # print(a.shape[0], b.shape[0], c.shape[0], d.shape[0])
-    '''
-    select
-    t1.IDNO,
-    t2.NAME,
-    t1.REPORT,
-    t1.SICK_AGE,
-    t1.BIRTHDAY,
-    t1.GENDER,
-    t1.REPORT_DATE,t1.SICK_DATE,
-    case t1.IMMIGRATION when 0 then 'domestic'
-    when 1 then 'imported'
-    when 8 then 'unknown' end as IMMIGRATION,
-    t3.DETERMINED_STATUS_DESC,
-    t4.COUNTRY_NAME as NATIONALITY,
-    t5.COUNTY_NAME as RESIDENCE_COUNTY,
-    t6.COUNTY_NAME as REPORT_COUNTY,
-    t7.OCCUPATION_DESC
-    
-    from CDCDW.USV_DWS_REPORT_DETAIL_EIC_UTF8 t1
-    left join CDCDW.USV_INDIVIDUAL_SAS t2 on t1.INDIVIDUAL = t2.INDIVIDUAL
-    left join CDCDW.DIM_DETERMINED_STATUS t3 on t1.DETERMINED_STATUS = t3.DETERMINED_STATUS
-    left join CDCDW.DIM_COUNTRY t4 on t1.NATIONALITY = t4.COUNTRY
-    left join CDCDW.DIM_TOWN t5 on t1.RESIDENCE_TOWN = t5.TOWN
-    left join CDCDW.DIM_TOWN t6 on t1.REPORT_TOWN = t6.TOWN
-    left join CDCDW.DIM_OCCUPATION t7 on t1.OCCUPATION = t7.OCCUPATION
-    where t1.DISEASE = '19CoV'
-    and t1.DETERMINED_STATUS = 5
-    and t1.REPORT_DATE >= TO_DATE('2020/1/1', 'YYYY/MM/DD')
-    '''
+        
 
 if __name__ == "__main__":
     main()
