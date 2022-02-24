@@ -1,0 +1,43 @@
+AESI (特殊關注不良事件),診斷碼
+Anaphylaxis (including allergic reactions),"T78, T80, T88"
+Immune thrombocytopenic purpura,D69
+Deep vein thrombosis,"I80, I81, I82"
+Pulmonary embolus,I26
+Microangiopathy,M31
+Guillain-Barré syndrome and Miller Fisher syndrome,G61
+Peripheral facial nerve palsy,G51
+"Myocarditis, pericarditis","I51, I30, I40, I41"
+Coronary artery disease,"I20, I21, I22, I24, I25"
+Arrhythmia,"I47, I48, I49, R00"
+convulsion/seizure/febrile convulsion,"G40, R56"
+Cerebrovascular stroke (including CVST),"I60, I61, I62, I63, I64, I65, I66, I67, I68, I69, G46, O87.3, O22.5"
+Transverse myelitis,G37
+Aseptic meningitis,"G03, A87, B26.1, A27.81"
+Acute disseminated encephalomyelitis (ADEM),G04
+"Encephalitis, Myelitis and Acute disseminated encephalomyelitis","A87, G02, G03, G04, G05, G37"
+Acute respiratory distress syndrome (ARDS),"J80, J81, J96"
+Arthritis/Acute aseptic arthritis,"M10, M11, M13, M19"
+Acute kidney injury,"N00, N01, N08, N17, N19"
+Liver injury,"K72, K76, K71, K75, K77, E80, R17"
+Single organ cutaneous vasculitis,"D69, L95, L98, M31"
+Erythema multiforme,L51
+Acute pancreatitis,K85
+Rhabdomyolysis,M62
+Acute myocardial infarction,"I21, I22"
+Multiple sclerosis (MS),G35
+Death (sudden death),"R95, R96, R98, R99, W75, W76, W77, W78, W79, W80, W81, W83, W84, I46"
+Kawasaki’s disease,M30
+Narcolepsy/ Cataplexy,G47.4
+Spontaneous abortion or Stillbirth,"O02, O03, P95, Z37"
+Preterm birth,"P07, O60, Z3A"
+Full-term birth,"O80, O82, Z38, O75.82"
+Allergic urticaria,L50.0
+Disseminated intravascular coagulation,D65
+Heart failure and cardiogenic shock,I50
+"Anosmia, ageusia",R43
+Chilblain-like lesions,T69
+Subacute thyroiditis,E06
+Optic neuritis (ON),H46
+Appendicitis,"K35, K36, K37"
+Multisystem inflammatory syndrome (children & adults),M35.8
+Heparin induced thrombocytopenia (HIT),D75.82

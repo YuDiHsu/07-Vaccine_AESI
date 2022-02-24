@@ -1,0 +1,13 @@
+aesi_diag_name,nhi_icd_code,adr_icd_code,exception,clean_period_days
+Anaphylaxis,"T78, T80, T88","T782, T886",,30
+Immune thrombocytopenic purpura,D69,"D693, D694, D695, D696","C00, C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C21, C22, C23, C24, C25, C26, C27, C28, C29, C30, C31, C32, C33, C34, C35, C36, C37, C38, C39, C40, C41, C42, C43, C44, C45, C46, C47, C48, C49, C50, C51, C52, C53, C54, C55, C56, C57, C58, C59, C60, C61, C62, C63, C64, C65, C66, C67, C68, C69, C70, C71, C72, C73, C74, C75, C76, C77, C78, C79, C80, C81, C82, C83, C84, C85, C86, C87, C88, C89, C90, C91, C92, C93, C94, C95, C96, C97, C98, C99, D00, D01, D02, D03, D04, D05, D06, D07, D08, D09, D10, D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27, D28, D29, D30, D31, D32, D33, D34, D35, D36, D37, D38, D39, D40, D41, D42, D43, D44, D45, D46, D47, D48, D49, D61",365
+Deep vein thrombosis,"I80, I81, I82","I801, I802, I803, I824, I870, O223, O871",,365
+Pulmonary embolus,I26,"I26, O882","I2601, I2690, I2782",365
+Guillain-Barré syndrome and Miller Fisher syndrome,G61,G610,,365
+Cerebrovascular stroke (including CVST),"I60, I61, I62, I63, I64, I65, I66, I67, I68, I69, G46, O87.3, O22.5",I676,,365
+Transverse myelitis,G37,G373,,365
+Acute disseminated encephalomyelitis (ADEM),G04,G040,,365
+Spontaneous abortion or Stillbirth,"O02, O03, P95, Z37","O02, O03, P95, Z37",,0
+Preterm birth,"P07, O60, Z3A","P07, O60, Z3A",,0
+Full-term birth,"O80, O82, Z38, O75.82","O80, O82, Z38, O75.82",,0
+Myocarditis_pericarditis,"I51, I30, I40, I41","I514, I30, I40, I41",,365
