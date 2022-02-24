@@ -8,7 +8,7 @@ import pandas as pd
 
 
 def produce_idno_csv():
-    engine = create_engine('postgresql://postgres:1qaz@WSX@192.168.171.108:5432/NHI_DATA')
+    engine = create_engine('postgresql://postgres:1qaz@WSXname@IP:PORT/NHI_DATA')
     con = engine.connect()
     # query = f"SELECT * FROM selected_nhi_vaccine_aesi_all"
 
@@ -80,7 +80,7 @@ def sftp_upload():
             cnopts.hostkeys = None
             log_path = os.path.abspath(os.path.join('.', 'sftp_upload_log.txt'))
             sftp_upload_path = os.path.join('/', 'give', 'ACTNHI')
-            with pysftp.Connection(host='192.168.171.160', username='cdc_liuyl', password='rQza1fq3895c', cnopts=cnopts, port=22, log=log_path) as sftp:
+            with pysftp.Connection(host='IP', username='username', password='pwd', cnopts=cnopts, port='port', log=log_path) as sftp:
                 sftp.cwd(sftp_upload_path)
                 dir_list = sorted(os.listdir(os.path.abspath(os.path.join('.', 'sftp_upload_folder'))), reverse=True)
                 if '.ipynb_checkpoints' in dir_list:
