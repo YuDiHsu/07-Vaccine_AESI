@@ -26,7 +26,7 @@ def upload_fuc(pickle_read_path, division_name, sql_table_name):
                                 '次診斷碼5': 'sub_diag_code_5'})
 
         # # SQL loading-----------------------------------------------------------------------------------------------
-        engine = create_engine('postgresql://postgres:1qaz@WSX@192.168.171.108:5432/NHI_DATA')
+        engine = create_engine('postgresql://postgres:1qaz@name@IP:PORT/NHI_DATA')
         con = engine.connect()
         n = 0
         for i in range(0, len(df), 100000):
